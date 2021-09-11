@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center;
+            margin: 30px auto;
+            background-color:#111236;">
+  <h1 style="color: white;">
+    Welcome to {{ title }}!
+  </h1>
+  <div>
+    <app-search-form style="display: inline-block;width: 50%; " (activateTable)="table.launch()"></app-search-form>
+    <app-flights #table></app-flights>
+  </div>
+</div>
+
+

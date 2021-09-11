@@ -1,0 +1,54 @@
+
+<form [formGroup]="searchForm" class="container" (ngSubmit)="onSubmit()">
+  <mat-form-field class="contChild">
+    <mat-select formControlName="destination" placeholder="Destination" >
+      <mat-option *ngFor="let des of Destinations" [value]="des" >
+        {{des}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="contChild">
+    <mat-select formControlName="connections" placeholder="# of connections">
+      <mat-option *ngFor="let con of connectionsToSelect" [value]="con" >
+        {{con}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="contChild">
+    <input matInput type="number" formControlName="mincost"  placeholder="Min Cost">
+  </mat-form-field>
+  <mat-form-field class="contChild">
+    <input  matInput type="number" formControlName="maxcost" placeholder="Max Cost">
+  </mat-form-field>
+    <mat-form-field class="contChild">
+      <input matInput formControlName="flightstart" [matDatepicker]="picker1" placeholder="Flight Date">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="contChild">
+      <input matInput formControlName="flightend" [matDatepicker]="picker" placeholder="End Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="contChild">
+      <button  class="custombtn" type="submit" [disabled]="!searchForm.valid">Search</button>
+  </div>
+</form>
+<div *ngIf="!searchForm.valid && (searchForm.dirty || searchForm.touched)" style="width: 25%;margin: 0 auto;" class="alert alert-danger">
+  <div *ngIf="!searchForm.get('mincost').valid && (searchForm.get('mincost').dirty || searchForm.get('mincost').touched)" >
+    <div *ngIf="searchForm.get('mincost').errors?.min">
+      Cost need to be greater then 0.
+    </div>
+  </div>
+  <div *ngIf="!searchForm.get('maxcost').valid && (searchForm.get('maxcost').dirty || searchForm.get('maxcost').touched)" >
+    <div *ngIf="searchForm.get('maxcost').errors?.min">
+      Cost need to be greater then 0.
+    </div>
+  </div>
+  <div *ngIf="searchForm.errors?.confirmedCostAttr">
+    Max cost need to be more then min cost.
+  </div>
+  <div *ngIf="searchForm.errors?.confirmedDatesAttr">
+   Start date sould be before end date.
+  </div>
+  </div>
