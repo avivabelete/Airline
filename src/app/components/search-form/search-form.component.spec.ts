@@ -34,11 +34,7 @@ describe('SearchFormComponent', () => {
   it('form sould be valid at first', () => {
     expect(component.searchForm.invalid).toBeFalsy();
   });
-  it('form sould be valid at first', () => {
-    component.onSubmit()
-    expect(component.searchForm.invalid).toBeFalsy();
-  });
-    it('Test formgroup element count ', () => {
+  it('Test formgroup element count ', () => {
     const formele = fixture.debugElement.nativeElement.querySelector("form");
     const elements = formele.querySelectorAll('mat-form-field')
     expect(elements.length).toEqual(6);
